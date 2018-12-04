@@ -7,9 +7,1025 @@
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <!--<link rel="stylesheet" href="/resources/demos/style.css">-->
   <style>
-  #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  #sortable { list-style-type: none; margin: 0; padding: 0; width: 100%; }
   #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: .5em; font-size: 1.0em; height: 10px; }
   #sortable li span { position: absolute; margin-left: -1.3em; }
+  
+  @import url(https://fonts.googleapis.com/css?family=Gabriela);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+html, body, div, h1, h2, h3, p, pre {
+	margin: 0;
+	padding: 0;
+	color: #333;
+}
+html, body {
+	background: #bdcbe5;
+	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+	font-size: 13px;
+	line-height: 1.55;
+}
+h1 {
+	padding: 40px 0 20px;
+	font: 40px/60px Gabriela, Georgia, serif;
+	text-align: center;
+	text-shadow: 3px 3px rgba(0,0,0,0.1);
+	color: #fff;	
+}
+p {
+	margin-bottom: 40px;
+	text-align: center;
+}
+a {
+	text-decoration: underline;
+	color: #1889e6;
+}
+a:hover {
+	text-decoration: none;
+}
+.bg {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.page {
+	position: relative;
+	max-width: 980px;
+	margin: 0 auto;
+	padding: 0 20px 40px;
+}
+.pcss3t {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: none;
+	font-size: 0;
+	text-align: left;
+}
+.pcss3t > input {
+	position: absolute;
+	display: none;
+}
+.pcss3t > label {
+	position: relative;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: none;
+	cursor: pointer;
+	transition: all 0.1s;
+	-o-transition: all 0.1s;	
+	-ms-transition: all 0.1s;	
+	-moz-transition: all 0.1s;	
+	-webkit-transition: all 0.1s;
+}
+.pcss3t > label i {
+	display: block;
+	float: left;
+	margin: 0 8px 0 -2px;
+	padding: 0;
+	border: 0;
+	outline: none;
+	font-family: FontAwesome;
+	font-style: normal;
+	font-size: 17px;
+}
+.pcss3t > input:checked + label {
+	cursor: default;
+}
+.pcss3t > ul {
+	list-style: none;
+	position: relative;
+	display: block;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: none;
+	font-size: 13px;
+}
+.pcss3t > ul > li {
+	position: absolute;
+	width: 100%;
+	overflow: auto;
+	padding: 30px 40px 40px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	opacity: 0;
+	transition: all 0.5s;
+	-o-transition: all 0.5s;	
+	-ms-transition: all 0.5s;	
+	-moz-transition: all 0.5s;	
+	-webkit-transition: all 0.5s;
+}
+.pcss3t > .tab-content-first:checked ~ ul .tab-content-first,
+.pcss3t > .tab-content-2:checked ~ ul .tab-content-2,
+.pcss3t > .tab-content-3:checked ~ ul .tab-content-3,
+.pcss3t > .tab-content-4:checked ~ ul .tab-content-4,
+.pcss3t > .tab-content-5:checked ~ ul .tab-content-5,
+.pcss3t > .tab-content-6:checked ~ ul .tab-content-6,
+.pcss3t > .tab-content-7:checked ~ ul .tab-content-7,
+.pcss3t > .tab-content-8:checked ~ ul .tab-content-8,
+.pcss3t > .tab-content-9:checked ~ ul .tab-content-9,
+.pcss3t > .tab-content-last:checked ~ ul .tab-content-last {
+	z-index: 1;
+	top: 0;
+	left: 0;
+	opacity: 1;
+	-webkit-transform: scale(1,1);
+	-webkit-transform: rotate(0deg);
+}
+
+
+/*----------------------------------------------------------------------------*/
+/*                                 EXTENSIONS                                 */
+/*----------------------------------------------------------------------------*/
+
+/**/
+/* auto height */
+/**/
+.pcss3t-height-auto > ul {
+	height: auto !important;
+}
+.pcss3t-height-auto > ul > li {
+	position: static;
+	display: none;
+	height: auto !important;
+}
+.pcss3t-height-auto > .tab-content-first:checked ~ ul .tab-content-first,
+.pcss3t-height-auto > .tab-content-2:checked ~ ul .tab-content-2,
+.pcss3t-height-auto > .tab-content-3:checked ~ ul .tab-content-3,
+.pcss3t-height-auto > .tab-content-4:checked ~ ul .tab-content-4,
+.pcss3t-height-auto > .tab-content-5:checked ~ ul .tab-content-5,
+.pcss3t-height-auto > .tab-content-6:checked ~ ul .tab-content-6,
+.pcss3t-height-auto > .tab-content-7:checked ~ ul .tab-content-7,
+.pcss3t-height-auto > .tab-content-8:checked ~ ul .tab-content-8,
+.pcss3t-height-auto > .tab-content-9:checked ~ ul .tab-content-9,
+.pcss3t-height-auto > .tab-content-last:checked ~ ul .tab-content-last {
+	display: block;
+}
+
+
+/**/
+/* grid */
+/**/
+.pcss3t .grid-row {
+	margin-top: 20px;
+}
+.pcss3t .grid-row:after {
+	content: '';
+	display: table;
+	clear: both;
+}
+.pcss3t .grid-row:first-child {
+	margin-top: 0;
+}
+.pcss3t .grid-col {
+	display: block;
+	float: left;
+	margin-left: 2%;
+}
+.pcss3t .grid-col:first-child {
+	margin-left: 0;
+}
+.pcss3t .grid-col .inner {
+	padding: 10px 0;
+	border-radius: 5px;
+	background: #f2f2f2;
+	text-align: center;
+}
+.pcss3t .grid-col-1 {
+	width: 15%;
+}
+.pcss3t .grid-col-2 {
+	width: 32%;
+}
+.pcss3t .grid-col-3 {
+	width: 49%;
+}
+.pcss3t .grid-col-4 {
+	width: 66%;
+}
+.pcss3t .grid-col-5 {
+	width: 83%;
+}
+.pcss3t .grid-col-offset-1 {
+	margin-left: 19%;
+}
+.pcss3t .grid-col-offset-1:first-child  {
+	margin-left: 17%;
+}
+.pcss3t .grid-col-offset-2 {
+	margin-left: 36%;	
+}
+.pcss3t .grid-col-offset-2:first-child {
+	margin-left: 34%;
+}
+.pcss3t .grid-col-offset-3 {
+	margin-left: 53%;
+}
+.pcss3t .grid-col-offset-3:first-child {
+	margin-left: 51%;
+}
+.pcss3t .grid-col-offset-4 {
+	margin-left: 70%;
+}
+.pcss3t .grid-col-offset-4:first-child {
+	margin-left: 68%;
+}
+.pcss3t .grid-col-offset-5:first-child {
+	margin-left: 85%;
+}
+
+
+/**/
+/* typography */
+/**/
+.pcss3t .typography {
+	color: #666;
+}
+.pcss3t .typography h1,
+.pcss3t .typography h2,
+.pcss3t .typography h3,
+.pcss3t .typography h4,
+.pcss3t .typography h5,
+.pcss3t .typography h6 {
+	margin: 40px 0 0 0;
+	padding: 0;
+	font-family: Gabriela, Georgia, serif;
+	text-align: left;
+	color: #333;
+}
+.pcss3t .typography h1 {
+	font-size: 40px;
+	line-height: 60px;
+	text-shadow: 3px 3px rgba(0,0,0,0.1);
+}
+.pcss3t .typography h2 {
+	font-size: 32px;
+	line-height: 48px;
+	text-shadow: 2px 2px rgba(0,0,0,0.1);
+}
+.pcss3t .typography h3 {
+	font-size: 26px;
+	line-height: 38px;
+	text-shadow: 1px 1px rgba(0,0,0,0.1);
+}
+.pcss3t .typography h4 {
+	font-size: 20px;
+	line-height: 30px;
+}
+.pcss3t .typography h5 {
+	font-size: 15px;
+	line-height: 23px;
+	text-transform: uppercase;
+}
+.pcss3t .typography h6 {
+	font-size: 13px;
+	line-height: 20px;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+.pcss3t .typography p {
+	margin: 20px 0 0 0;
+	padding: 0;
+	line-height: 20px;
+	text-align: left;
+}
+.pcss3t .typography ul,
+.pcss3t .typography ol {
+	list-style: none;
+	margin: 20px 0 0 0;
+	padding: 0;
+}
+.pcss3t .typography li {
+	position: relative;
+	margin-top: 5px;
+	padding-left: 20px;
+}
+.pcss3t .typography li ul,
+.pcss3t .typography li ol {
+	margin-top: 5px;
+}
+.pcss3t .typography ul li:before {
+	content: '';
+	position: absolute;
+	top: 8px;
+	left: 0;
+	width: 6px;
+	height: 4px;
+	background: #404040;
+}
+.pcss3t .typography ol {
+	counter-reset: list1;
+}
+.pcss3t .typography ol > li:before {
+	counter-increment:list1;
+	content: counter(list1)'.';
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.pcss3t .typography a {
+	text-decoration: underline;
+	color: #1889e6;
+}
+.pcss3t .typography a:hover {
+	text-decoration: none;
+}
+.pcss3t .typography .pic {
+	padding: 4px;
+	border: 1px dotted #ccc;
+}
+.pcss3t .typography .pic img {
+	display: block;
+}
+.pcss3t .typography .pic-right {
+	float: right;
+	margin: 0 0 10px 20px;
+}
+.pcss3t .typography .link {
+	text-decoration: underline;
+	color: #1889e6;
+	cursor: pointer;
+}
+.pcss3t .typography .link:hover {
+	text-decoration: none;
+}
+.pcss3t .typography h1:first-child,
+.pcss3t .typography h2:first-child,
+.pcss3t .typography h3:first-child,
+.pcss3t .typography h4:first-child,
+.pcss3t .typography h5:first-child,
+.pcss3t .typography h6:first-child,
+.pcss3t .typography p:first-child {
+	margin-top: 0;
+}
+.pcss3t .typography .text-center {
+	text-align: center;
+}
+.pcss3t .typography .text-right {
+	text-align: right;
+}
+
+
+/**/
+/* steps */
+/**/
+.pcss3t-steps > label {
+	cursor: default;
+}
+
+
+/**/
+/* animation effects */
+/**/
+.pcss3t-effect-scale > ul > li {
+	-webkit-transform: scale(0.1,0.1);
+}
+.pcss3t-effect-rotate  > ul > li {
+	-webkit-transform: rotate(180deg);
+}
+.pcss3t-effect-slide-top > ul > li {
+	top: -40px;
+}
+.pcss3t-effect-slide-right > ul > li {
+	left: 80px;
+}
+.pcss3t-effect-slide-bottom > ul > li {
+	top: 40px;
+}
+.pcss3t-effect-slide-left > ul > li {
+	left: -80px;
+}
+
+
+
+/*----------------------------------------------------------------------------*/
+/*                                   LAYOUTS                                  */
+/*----------------------------------------------------------------------------*/
+
+/**/
+/* top right */
+/**/
+.pcss3t-layout-top-right {
+	text-align: right;
+}
+
+
+/**/
+/* top center */
+/**/
+.pcss3t-layout-top-center {
+	text-align: center;
+}
+
+
+/**/
+/* top combi */
+/**/
+.pcss3t > .right {
+	float: right;
+}
+
+
+
+/*----------------------------------------------------------------------------*/
+/*                                    ICONS                                   */
+/*----------------------------------------------------------------------------*/
+
+/**/
+/* icons positions */
+/**/
+.pcss3t-icons-top > label {
+	text-align: center;
+}
+.pcss3t-icons-top > label i {
+	float: none;
+	margin: 0 auto -10px;
+	padding-top: 17px;
+	font-size: 23px;
+	line-height: 23px;
+	text-align: center;
+}
+.pcss3t-icons-right > label i {
+	float: right;
+	margin: 0 -2px 0 8px;
+}
+.pcss3t-icons-bottom > label {
+	text-align: center;
+}
+.pcss3t-icons-bottom > label i {
+	float: none;
+	margin: -10px auto 0;
+	padding-bottom: 17px;
+	font-size: 23px;
+	line-height: 23px;
+	text-align: center;
+}
+.pcss3t-icons-only > label i {
+	float: none;
+	margin: 0 auto;
+	font-size: 23px;
+}
+
+
+/**/
+/* font awesome */
+/**/
+@font-face
+{
+	font-family: 'FontAwesome';
+	src: url('../fonts/fontawesome-webfont.eot?v=3.0.1');
+	src: url('../fonts/fontawesome-webfont.eot?#iefix&v=3.0.1') format('embedded-opentype'),
+	url('../fonts/fontawesome-webfont.woff?v=3.0.1') format('woff'),
+	url('../fonts/fontawesome-webfont.ttf?v=3.0.1') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+.icon-glass:before {content: '\f000';}
+.icon-music:before {content: '\f001';}
+.icon-search:before {content: '\f002';}
+.icon-envelope:before {content: '\f003';}
+.icon-heart:before {content: '\f004';}
+.icon-star:before {content: '\f005';}
+.icon-star-empty:before {content: '\f006';}
+.icon-user:before {content: '\f007';}
+.icon-film:before {content: '\f008';}
+.icon-th-large:before {content: '\f009';}
+.icon-th:before {content: '\f00a';}
+.icon-th-list:before {content: '\f00b';}
+.icon-ok:before {content: '\f00c';}
+.icon-remove:before {content: '\f00d';}
+.icon-zoom-in:before {content: '\f00e';}
+.icon-zoom-out:before {content: '\f010';}
+.icon-off:before {content: '\f011';}
+.icon-signal:before {content: '\f012';}
+.icon-cog:before {content: '\f013';}
+.icon-trash:before {content: '\f014';}
+.icon-home:before {content: '\f015';}
+.icon-file:before {content: '\f016';}
+.icon-time:before {content: '\f017';}
+.icon-road:before {content: '\f018';}
+.icon-download-alt:before {content: '\f019';}
+.icon-download:before {content: '\f01a';}
+.icon-upload:before {content: '\f01b';}
+.icon-inbox:before {content: '\f01c';}
+.icon-play-circle:before {content: '\f01d';}
+.icon-repeat:before {content: '\f01e';}
+.icon-refresh:before {content: '\f021';}
+.icon-list-alt:before {content: '\f022';}
+.icon-lock:before {content: '\f023';}
+.icon-flag:before {content: '\f024';}
+.icon-headphones:before {content: '\f025';}
+.icon-volume-off:before {content: '\f026';}
+.icon-volume-down:before {content: '\f027';}
+.icon-volume-up:before {content: '\f028';}
+.icon-qrcode:before {content: '\f029';}
+.icon-barcode:before {content: '\f02a';}
+.icon-tag:before {content: '\f02b';}
+.icon-tags:before {content: '\f02c';}
+.icon-book:before {content: '\f02d';}
+.icon-bookmark:before {content: '\f02e';}
+.icon-print:before {content: '\f02f';}
+.icon-camera:before {content: '\f030';}
+.icon-font:before {content: '\f031';}
+.icon-bold:before {content: '\f032';}
+.icon-italic:before {content: '\f033';}
+.icon-text-height:before {content: '\f034';}
+.icon-text-width:before {content: '\f035';}
+.icon-align-left:before {content: '\f036';}
+.icon-align-center:before {content: '\f037';}
+.icon-align-right:before {content: '\f038';}
+.icon-align-justify:before {content: '\f039';}
+.icon-list:before {content: '\f03a';}
+.icon-indent-left:before {content: '\f03b';}
+.icon-indent-right:before {content: '\f03c';}
+.icon-facetime-video:before  {content: '\f03d';}
+.icon-picture:before {content: '\f03e';}
+.icon-pencil:before {content: '\f040';}
+.icon-map-marker:before {content: '\f041';}
+.icon-adjust:before {content: '\f042';}
+.icon-tint:before {content: '\f043';}
+.icon-edit:before {content: '\f044';}
+.icon-share:before {content: '\f045';}
+.icon-check:before {content: '\f046';}
+.icon-move:before {content: '\f047';}
+.icon-step-backward:before {content: '\f048';}
+.icon-fast-backward:before {content: '\f049';}
+.icon-backward:before {content: '\f04a'; position: relative;	left: -2px;}
+.icon-play:before {content: '\f04b'; position: relative; left: 1px;}
+.icon-pause:before {content: '\f04c';}
+.icon-stop:before {content: '\f04d';}
+.icon-forward:before {content: '\f04e'; position: relative;	left: 2px;}
+.icon-fast-forward:before {content: '\f050';}
+.icon-step-forward:before {content: '\f051';}
+.icon-eject:before {content: '\f052';}
+.icon-chevron-left:before {content: '\f053';}
+.icon-chevron-right:before {content: '\f054';}
+.icon-plus-sign:before {content: '\f055';}
+.icon-minus-sign:before {content: '\f056';}
+.icon-remove-sign:before {content: '\f057';}
+.icon-ok-sign:before {content: '\f058';}
+.icon-question-sign:before {content: '\f059';}
+.icon-info-sign:before {content: '\f05a';}
+.icon-screenshot:before {content: '\f05b';}
+.icon-remove-circle:before {content: '\f05c';}
+.icon-ok-circle:before {content: '\f05d';}
+.icon-ban-circle:before {content: '\f05e';}
+.icon-arrow-left:before {content: '\f060';}
+.icon-arrow-right:before {content: '\f061';}
+.icon-arrow-up:before {content: '\f062';}
+.icon-arrow-down:before {content: '\f063';}
+.icon-share-alt:before {content: '\f064';}
+.icon-resize-full:before {content: '\f065';}
+.icon-resize-small:before {content: '\f066';}
+.icon-plus:before {content: '\f067';}
+.icon-minus:before {content: '\f068';}
+.icon-asterisk:before {content: '\f069';}
+.icon-exclamation-sign:before {content: '\f06a';}
+.icon-gift:before {content: '\f06b';}
+.icon-leaf:before {content: '\f06c';}
+.icon-fire:before {content: '\f06d';}
+.icon-eye-open:before {content: '\f06e';}
+.icon-eye-close:before {content: '\f070';}
+.icon-warning-sign:before {content: '\f071';}
+.icon-plane:before {content: '\f072';}
+.icon-calendar:before {content: '\f073';}
+.icon-random:before {content: '\f074';}
+.icon-comment:before {content: '\f075';}
+.icon-magnet:before {content: '\f076';}
+.icon-chevron-up:before {content: '\f077';}
+.icon-chevron-down:before {content: '\f078';}
+.icon-retweet:before {content: '\f079';}
+.icon-shopping-cart:before {content: '\f07a';}
+.icon-folder-close:before {content: '\f07b';}
+.icon-folder-open:before {content: '\f07c';}
+.icon-resize-vertical:before {content: '\f07d';}
+.icon-resize-horizontal:before {content: '\f07e';}
+.icon-bar-chart:before {content: '\f080';}
+.icon-twitter-sign:before {content: '\f081';}
+.icon-facebook-sign:before {content: '\f082';}
+.icon-camera-retro:before {content: '\f083';}
+.icon-key:before {content: '\f084';}
+.icon-cogs:before {content: '\f085';}
+.icon-comments:before {content: '\f086';}
+.icon-thumbs-up:before {content: '\f087';}
+.icon-thumbs-down:before {content: '\f088';}
+.icon-star-half:before {content: '\f089';}
+.icon-heart-empty:before {content: '\f08a';}
+.icon-signout:before {content: '\f08b';}
+.icon-linkedin-sign:before {content: '\f08c';}
+.icon-pushpin:before {content: '\f08d';}
+.icon-external-link:before {content: '\f08e';}
+.icon-signin:before {content: '\f090';}
+.icon-trophy:before {content: '\f091';}
+.icon-github-sign:before {content: '\f092';}
+.icon-upload-alt:before {content: '\f093';}
+.icon-lemon:before {content: '\f094';}
+.icon-phone:before {content: '\f095';}
+.icon-check-empty:before {content: '\f096';}
+.icon-bookmark-empty:before {content: '\f097';}
+.icon-phone-sign:before {content: '\f098';}
+.icon-twitter:before {content: '\f099';}
+.icon-facebook:before {content: '\f09a';}
+.icon-github:before {content: '\f09b';}
+.icon-unlock:before {content: '\f09c';}
+.icon-credit-card:before {content: '\f09d';}
+.icon-rss:before {content: '\f09e';}
+.icon-hdd:before {content: '\f0a0';}
+.icon-bullhorn:before {content: '\f0a1';}
+.icon-bell:before {content: '\f0a2';}
+.icon-certificate:before {content: '\f0a3';}
+.icon-hand-right:before {content: '\f0a4';}
+.icon-hand-left:before {content: '\f0a5';}
+.icon-hand-up:before {content: '\f0a6';}
+.icon-hand-down:before {content: '\f0a7';}
+.icon-circle-arrow-left:before {content: '\f0a8';}
+.icon-circle-arrow-right:before {content: '\f0a9';}
+.icon-circle-arrow-up:before {content: '\f0aa';}
+.icon-circle-arrow-down:before {content: '\f0ab';}
+.icon-globe:before {content: '\f0ac';}
+.icon-wrench:before {content: '\f0ad';}
+.icon-tasks:before {content: '\f0ae';}
+.icon-filter:before {content: '\f0b0';}
+.icon-briefcase:before {content: '\f0b1';}
+.icon-fullscreen:before {content: '\f0b2';}
+.icon-group:before {content: '\f0c0';}
+.icon-link:before {content: '\f0c1';}
+.icon-cloud:before {content: '\f0c2';}
+.icon-beaker:before {content: '\f0c3';}
+.icon-cut:before {content: '\f0c4';}
+.icon-copy:before {content: '\f0c5';}
+.icon-paper-clip:before {content: '\f0c6';}
+.icon-save:before {content: '\f0c7';}
+.icon-sign-blank:before {content: '\f0c8';}
+.icon-reorder:before {content: '\f0c9';}
+.icon-list-ul:before {content: '\f0ca';}
+.icon-list-ol:before {content: '\f0cb';}
+.icon-strikethrough:before {content: '\f0cc';}
+.icon-underline:before {content: '\f0cd';}
+.icon-table:before {content: '\f0ce';}
+.icon-magic:before {content: '\f0d0';}
+.icon-truck:before {content: '\f0d1';}
+.icon-pinterest:before {content: '\f0d2';}
+.icon-pinterest-sign:before {content: '\f0d3';}
+.icon-google-plus-sign:before {content: '\f0d4';}
+.icon-google-plus:before {content: '\f0d5';}
+.icon-money:before {content: '\f0d6';}
+.icon-caret-down:before {content: '\f0d7';}
+.icon-caret-up:before {content: '\f0d8';}
+.icon-caret-left:before {content: '\f0d9';}
+.icon-caret-right:before {content: '\f0da';}
+.icon-columns:before {content: '\f0db';}
+.icon-sort:before {content: '\f0dc';}
+.icon-sort-down:before {content: '\f0dd';}
+.icon-sort-up:before {content: '\f0de';}
+.icon-envelope-alt:before {content: '\f0e0';}
+.icon-linkedin:before {content: '\f0e1';}
+.icon-undo:before {content: '\f0e2';}
+.icon-legal:before {content: '\f0e3';}
+.icon-dashboard:before {content: '\f0e4';}
+.icon-comment-alt:before {content: '\f0e5';}
+.icon-comments-alt:before {content: '\f0e6';}
+.icon-bolt:before {content: '\f0e7';}
+.icon-sitemap:before {content: '\f0e8';}
+.icon-umbrella:before {content: '\f0e9';}
+.icon-paste:before {content: '\f0ea';}
+.icon-lightbulb:before {content: '\f0eb';}
+.icon-exchange:before {content: '\f0ec';}
+.icon-cloud-download:before {content: '\f0ed';}
+.icon-cloud-upload:before {content: '\f0ee';}
+.icon-user-md:before {content: '\f0f0';}
+.icon-stethoscope:before {content: '\f0f1';}
+.icon-suitcase:before {content: '\f0f2';}
+.icon-bell-alt:before {content: '\f0f3';}
+.icon-coffee:before {content: '\f0f4';}
+.icon-food:before {content: '\f0f5';}
+.icon-file-alt:before {content: '\f0f6';}
+.icon-building:before {content: '\f0f7';}
+.icon-hospital:before {content: '\f0f8';}
+.icon-ambulance:before {content: '\f0f9';}
+.icon-medkit:before {content: '\f0fa';}
+.icon-fighter-jet:before {content: '\f0fb';}
+.icon-beer:before {content: '\f0fc';}
+.icon-h-sign:before {content: '\f0fd';}
+.icon-plus-sign-alt:before {content: '\f0fe';}
+.icon-double-angle-left:before {content: '\f100';}
+.icon-double-angle-right:before {content: '\f101';}
+.icon-double-angle-up:before {content: '\f102';}
+.icon-double-angle-down:before {content: '\f103';}
+.icon-angle-left:before {content: '\f104';}
+.icon-angle-right:before {content: '\f105';}
+.icon-angle-up:before {content: '\f106';}
+.icon-angle-down:before {content: '\f107';}
+.icon-desktop:before {content: '\f108';}
+.icon-laptop:before {content: '\f109';}
+.icon-tablet:before {content: '\f10a';}
+.icon-mobile-phone:before {content: '\f10b';}
+.icon-circle-blank:before {content: '\f10c';}
+.icon-quote-left:before {content: '\f10d';}
+.icon-quote-right:before {content: '\f10e';}
+.icon-spinner:before {content: '\f110';}
+.icon-circle:before {content: '\f111';}
+.icon-reply:before {content: '\f112';}
+.icon-github-alt:before {content: '\f113';}
+.icon-folder-close-alt:before {content: '\f114';}
+.icon-folder-open-alt:before {content: '\f115';}
+
+
+
+/*----------------------------------------------------------------------------*/
+/*                               RESPONSIVENESS                               */
+/*----------------------------------------------------------------------------*/
+
+/**/
+/* pad */
+/**/
+@media screen and (max-width: 980px) {
+	
+}
+
+
+/**/
+/* phone */
+/**/
+@media screen and (max-width: 767px) {
+	.pcss3t > label {
+		display: block;
+	}
+	.pcss3t > .right {
+		float: none;
+	}
+}
+
+
+
+/*----------------------------------------------------------------------------*/
+/*                                   THEMES                                   */
+/*----------------------------------------------------------------------------*/
+
+/**/
+/* default */
+/**/
+.pcss3t > label {	
+	padding: 0 20px;
+	background: #e5e5e5;
+	font-size: 13px;
+	line-height: 49px;
+}
+.pcss3t > label:hover {
+	background: #f2f2f2;
+}
+.pcss3t > input:checked + label {
+	background: #fff;
+}
+.pcss3t > ul {
+	background: #fff;
+	text-align: left;
+}
+.pcss3t-steps > label:hover {
+	background: #e5e5e5;	
+}
+
+
+/**/
+/* theme 1 */
+/**/
+.pcss3t-theme-1 > label {
+	margin: 0 5px 5px 0;
+	border-radius: 5px;
+	background: #fff;
+	box-shadow: 0 2px rgba(0,0,0,0.2);
+	color: #808080;
+	opacity: 0.8;
+}
+.pcss3t-theme-1 > label:hover {
+	background: #fff;
+	opacity: 1;
+}
+.pcss3t-theme-1 > input:checked + label {
+	margin-bottom: 0;
+	padding-bottom: 5px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+	color: #2b82d9;
+	opacity: 1;
+}
+.pcss3t-theme-1 > ul {
+	border-radius: 5px;
+	box-shadow: 0 3px rgba(0,0,0,0.2);
+}
+.pcss3t-theme-1 > .tab-content-first:checked ~ ul {
+	border-top-left-radius: 0;
+}
+@media screen and (max-width: 767px) {
+	.pcss3t-theme-1 > label {
+		margin-right: 0;
+	}
+	.pcss3t-theme-1 > input:checked + label {
+		margin-bottom: 5px;
+		padding-bottom: 0;
+		border-radius: 5px;
+	}
+	.pcss3t-theme-1 > .tab-content-first:checked ~ ul {
+		border-top-left-radius: 5px;
+	}
+}
+
+
+/**/
+/* theme 2 */
+/**/
+.pcss3t-theme-2 {
+	padding: 5px;
+	background: rgba(0,0,0,0.2);
+}
+.pcss3t-theme-2 > label {
+	margin-right: 0;
+	margin-bottom: 0;
+	background: none;
+	border-radius: 0;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+	color: #fff;
+	opacity: 1;
+}
+.pcss3t-theme-2 > label:hover {
+	background: rgba(255,255,255,0.2);
+}
+.pcss3t-theme-2 > input:checked + label {
+	padding-bottom: 0;
+	background: #fff;
+	background: linear-gradient(to bottom, #e5e5e5 0%, #ffffff 100%);
+	background: -o-linear-gradient(top, #e5e5e5 0%, #ffffff 100%);
+	background: -ms-linear-gradient(top, #e5e5e5 0%, #ffffff 100%);
+	background: -moz-linear-gradient(top, #e5e5e5 0%, #ffffff 100%);
+	background: -webkit-linear-gradient(top, #e5e5e5 0%, #ffffff 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e5e5e5', endColorstr='#ffffff', GradientType=0);
+	text-shadow: 1px 1px 1px rgba(255,255,255,0.5);
+	color: #822bd9;
+}
+.pcss3t-theme-2 > ul {
+	margin: 0 -5px -5px;
+	border-radius: 0;
+	box-shadow: none;
+}
+@media screen and (max-width: 767px) {
+	.pcss3t-theme-2 > ul {
+		margin-top: 5px;
+	}
+}
+
+
+/**/
+/* theme 3 */
+/**/
+.pcss3t-theme-3 {
+	background: rgba(0,0,0,0.8);	
+}
+.pcss3t-theme-3 > label {
+	background: none;
+	border-right: 1px dotted rgba(255,255,255,0.5);
+	text-align: center;
+	color: #fff;
+	opacity: 0.6;
+}
+.pcss3t-theme-3 > label:hover {
+	background: none;
+	color: #d9d92b;
+	opacity: 0.8;
+}
+.pcss3t-theme-3 > input:checked + label {
+	background: #d9d92b;
+	color: #000;
+	opacity: 1;
+}
+.pcss3t-theme-3 > ul {
+	border-top: 4px solid #d9d92b;
+	border-bottom: 4px solid #d9d92b;
+	border-radius: 0;
+	box-shadow: none;
+}
+
+
+/**/
+/* theme 4 */
+/**/
+.pcss3t-theme-4 > label {
+	margin: 0 10px 10px 0;
+	border-radius: 5px;
+	background: #78c5fd;
+	background: linear-gradient(to bottom, #78c5fd 0%, #2c8fdd 100%);
+	background: -o-linear-gradient(top, #78c5fd 0%, #2c8fdd 100%);
+	background: -ms-linear-gradient(top, #78c5fd 0%, #2c8fdd 100%);
+	background: -moz-linear-gradient(top, #78c5fd 0%, #2c8fdd 100%);
+	background: -webkit-linear-gradient(top, #78c5fd 0%, #2c8fdd 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#78c5fd', endColorstr='#2c8fdd', GradientType=0);
+	box-shadow: inset 0 1px rgba(255,255,255,0.5), 0 1px rgba(0,0,0,0.5);
+	line-height: 39px;
+	text-shadow: 0 1px rgba(0,0,0,0.5);
+	color: #fff;
+}
+.pcss3t-theme-4 > label:hover {
+	background: #90cffc;
+	background: linear-gradient(to bottom, #90cffc 0%, #439bde 100%);
+	background: -o-linear-gradient(top, #90cffc 0%, #439bde 100%);
+	background: -ms-linear-gradient(top, #90cffc 0%, #439bde 100%);
+	background: -moz-linear-gradient(top, #90cffc 0%, #439bde 100%);
+	background: -webkit-linear-gradient(top, #90cffc 0%, #439bde 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#90cffc', endColorstr='#439bde', GradientType=0);
+}
+.pcss3t-theme-4 > input:checked + label {
+	top: 1px;
+	background: #5f9dc9;
+	background: linear-gradient(to bottom, #5f9dc9 0%, #2270ab 100%);
+	background: -o-linear-gradient(top, #5f9dc9 0%, #2270ab 100%);
+	background: -ms-linear-gradient(top, #5f9dc9 0%, #2270ab 100%);
+	background: -moz-linear-gradient(top, #5f9dc9 0%, #2270ab 100%);
+	background: -webkit-linear-gradient(top, #5f9dc9 0%, #2270ab 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5f9dc9', endColorstr='#2270ab', GradientType=0);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,0.5), 0 1px rgba(255,255,255,0.5);
+	text-shadow: none;
+}
+.pcss3t-theme-4 > ul {
+	border-radius: 5px;
+	box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+}
+@media screen and (max-width: 767px) {
+	.pcss3t-theme-4 > label {
+		margin-right: 0;
+	}
+}
+
+
+/**/
+/* theme 5 */
+/**/
+.pcss3t-theme-5 {
+	padding: 15px;
+	border-radius: 5px;
+	background: #ad6395;
+	background: linear-gradient(to right, #ad6395 0%, #a163ad 100%);
+	background: -o-linear-gradient(left, #ad6395 0%, #a163ad 100%);
+	background: -ms-linear-gradient(left, #ad6395 0%, #a163ad 100%);
+	background: -moz-linear-gradient(left, #ad6395 0%, #a163ad 100%);
+	background: -webkit-linear-gradient(left, #ad6395 0%, #a163ad 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ad6395', endColorstr='#a163ad', GradientType=1);
+}
+.pcss3t-theme-5 > label {
+	margin-right: 10px;
+	margin-bottom: 15px;
+	background: none;
+	border-radius: 5px;
+	text-align: center;
+	color: #fff;
+	opacity: 1;
+}
+.pcss3t-theme-5 > label:hover {
+	background: rgba(255,255,255,0.15);
+}
+.pcss3t-theme-5 > input:checked + label {
+	background: rgba(255,255,255,0.3);
+	color: #000;
+}
+.pcss3t-theme-5 > input:checked + label:after {
+	content: '';
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	margin-top: 10px;
+	margin-left: -6px;
+	border-right: 6px solid transparent;
+	border-bottom: 6px solid #fff;
+	border-left: 6px solid transparent;
+}
+.pcss3t-theme-5 > ul {
+	margin: 0 -15px -15px;
+	border-radius: 0 0 5px 5px;
+	box-shadow: none;
+}
+@media screen and (max-width: 767px) {
+	.pcss3t-theme-5 > input:checked + label:after {
+		display: none;
+	}
+}
+
+
+/*----------------------------------------------------------------------------*/
+/*                               CUSTOMIZATION                                */
+/*----------------------------------------------------------------------------*/
+
+/**/
+/* height */
+/**/
+.pcss3t > ul,
+.pcss3t > ul > li {
+	height: 500px;
+}
+
   </style>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -58,80 +1074,95 @@
   } );
   </script>
   <script> 
-  function addpokemontolist(addtext) {
-      if (addtext == "") {
-          alert("You must type in a pokemon name into the box.")
-          return
+  function pokemonchecked(monid) {
+      monname = pokelist[monid];
+      if (document.getElementById("checkbox_" + monid).checked == true){
+        // alert(monname + "checked");
+            var ul = document.getElementById("sortable");
+            var li = document.createElement("li");
+            li.appendChild(document.createTextNode(monid + " " + monname));
+            li.setAttribute("id", monid);
+            li.setAttribute("class", "ui-state-default");
+            ul.appendChild(li);
+      } else {
+            var ul = document.getElementById('sortable');
+            var li = document.getElementById(monid);
+            ul.removeChild(li)
       }
-      var pokeid = addtext.split(" ")[0]
-      var pokename = addtext.split(" ")[1]
-      if($("#sortable").has(document.getElementById(pokeid)).length) {
-            alert(pokename + " is already in your list.");
-            document.getElementById('addtext').value = "";
-            return;
-      }
-        //   $('.append').append('<li>' + pokeid + '</li>');
-      var ul = document.getElementById("sortable");
-      var li = document.createElement("li");
-      li.appendChild(document.createTextNode(addtext));
-      li.setAttribute("id", pokeid);
-      li.setAttribute("class", "ui-state-default");
-      ul.appendChild(li);
-      document.getElementById('addtext').value = "";
-      var sortedIDs = $( "#sortable" ).sortable( "toArray" );
-      $('#pokelist').val(sortedIDs.join("\n"));
-    }
+    var sortedIDs = $( "#sortable" ).sortable( "toArray" );
+    $('#pokelist').val(sortedIDs.join("\n"));
+  }
     function clearpokemonlist() {
         $('#sortable').empty();
         var sortedIDs = $( "#sortable" ).sortable( "toArray" );
         $('#pokelist').val(sortedIDs.join("\n"));
+        checkboxes = document.getElementsByName('pcb');
+        for(var i=0, n=checkboxes.length;i<n;i++) {
+            checkboxes[i].checked = false;
+        }
     }
     function copytexttolist() {
-        $('#sortable').empty();
-        // alert(document.getElementById('pokelist').value);
         var lines = document.getElementById('pokelist').value.split('\n');
+        clearpokemonlist();
+        // alert(document.getElementById('pokelist').value);
         for(var i = 0;i < lines.length;i++){
             //code here using lines[i] which will give you each line
             if(pokelist[lines[i]] != null) {
-                addpokemontolist(lines[i] + " " + pokelist[lines[i]]);
+                document.getElementById("checkbox_" + lines[i]).checked = true;
+                pokemonchecked(lines[i])
+                // addpokemontolist(lines[i] + " " + pokelist[lines[i]]);
             }
         }
     }
   </script>
 </head>
 <body>
- <TABLE BORDER=0>
-     <TR>
-         <TD colspan=2>
-               <input type="button" onclick="addpokemontolist(document.getElementById('addtext').value);" value="add pokemon">
-                <input id=addtext list="mylist" />
-                <datalist id="mylist">
-                <!--<?=$pokemonoptionlist?>-->
-                <script>
-                 var options = ''; var pokename = ";"
-                    for(var i = 1; i < pokelist.length; i++){
-                        options += '<option value="' + i + " " + pokelist[i] +'" />';
-                        document.getElementById('mylist').innerHTML = options;
-                    }
-                </script>
-                </datalist>
-                <input type=button onclick="clearpokemonlist();" value="Clear list">
-                <input type=button onclick="copytexttolist();" value="Copy text to list">
-         </TD>
-     </TR>
-     <TR>
-         <TD width=300 valign=top>
-            <ul id="sortable">
-              <li class="ui-state-default" id=201>201 unown</li>
-              <li class="ui-state-default" id=248>248 tyranitar</li>
-              <li class="ui-state-default" id=149>149 dragonite</li>
-              <li class="ui-state-default" id=242>242 blissey</li>
-            </ul>
-        </TD>
+    <TABLE><TR valign=top><TD width=300>
+			<div class="pcss3t pcss3t-effect-scale pcss3t-theme-1">
+				<input type="radio" name="pcss3t" checked  id="tab1"class="tab-content-first">
+				<label for="tab1"><i class="icon-bolt"></i>Gen 1</label>
+				
+				<input type="radio" name="pcss3t" id="tab2" class="tab-content-2">
+				<label for="tab2"><i class="icon-picture"></i>Gen 2</label>
+				
+				<input type="radio" name="pcss3t" id="tab3" class="tab-content-3">
+				<label for="tab3"><i class="icon-cogs"></i>Gen 3</label>
+				
+				<input type="radio" name="pcss3t" id="tab5" class="tab-content-last">
+				<label for="tab5"><i class="icon-globe"></i>Gen 4</label>
+				
+				<ul>
+					<li class="tab-content tab-content-first typography">
+                    <input type=checkbox name=pcb id="checkbox_1"  onclick="pokemonchecked('1');">bulbasaur<BR><input type=checkbox name=pcb id="checkbox_2"  onclick="pokemonchecked('2');">ivysaur<BR><input type=checkbox name=pcb id="checkbox_3"  onclick="pokemonchecked('3');">venusaur<BR><input type=checkbox name=pcb id="checkbox_4"  onclick="pokemonchecked('4');">charmander<BR><input type=checkbox name=pcb id="checkbox_5"  onclick="pokemonchecked('5');">charmeleon<BR><input type=checkbox name=pcb id="checkbox_6"  onclick="pokemonchecked('6');">charizard<BR><input type=checkbox name=pcb id="checkbox_7"  onclick="pokemonchecked('7');">squirtle<BR><input type=checkbox name=pcb id="checkbox_8"  onclick="pokemonchecked('8');">wartortle<BR><input type=checkbox name=pcb id="checkbox_9"  onclick="pokemonchecked('9');">blastoise<BR><input type=checkbox name=pcb id="checkbox_10"  onclick="pokemonchecked('10');">caterpie<BR><input type=checkbox name=pcb id="checkbox_11"  onclick="pokemonchecked('11');">metapod<BR><input type=checkbox name=pcb id="checkbox_12"  onclick="pokemonchecked('12');">butterfree<BR><input type=checkbox name=pcb id="checkbox_13"  onclick="pokemonchecked('13');">weedle<BR><input type=checkbox name=pcb id="checkbox_14"  onclick="pokemonchecked('14');">kakuna<BR><input type=checkbox name=pcb id="checkbox_15"  onclick="pokemonchecked('15');">beedrill<BR><input type=checkbox name=pcb id="checkbox_16"  onclick="pokemonchecked('16');">pidgey<BR><input type=checkbox name=pcb id="checkbox_17"  onclick="pokemonchecked('17');">pidgeotto<BR><input type=checkbox name=pcb id="checkbox_18"  onclick="pokemonchecked('18');">pidgeot<BR><input type=checkbox name=pcb id="checkbox_19"  onclick="pokemonchecked('19');">rattata<BR><input type=checkbox name=pcb id="checkbox_20"  onclick="pokemonchecked('20');">raticate<BR><input type=checkbox name=pcb id="checkbox_21"  onclick="pokemonchecked('21');">spearow<BR><input type=checkbox name=pcb id="checkbox_22"  onclick="pokemonchecked('22');">fearow<BR><input type=checkbox name=pcb id="checkbox_23"  onclick="pokemonchecked('23');">ekans<BR><input type=checkbox name=pcb id="checkbox_24"  onclick="pokemonchecked('24');">arbok<BR><input type=checkbox name=pcb id="checkbox_25"  onclick="pokemonchecked('25');">pikachu<BR><input type=checkbox name=pcb id="checkbox_26"  onclick="pokemonchecked('26');">raichu<BR><input type=checkbox name=pcb id="checkbox_27"  onclick="pokemonchecked('27');">sandshrew<BR><input type=checkbox name=pcb id="checkbox_28"  onclick="pokemonchecked('28');">sandslash<BR><input type=checkbox name=pcb id="checkbox_29"  onclick="pokemonchecked('29');">nidoran♀<BR><input type=checkbox name=pcb id="checkbox_30"  onclick="pokemonchecked('30');">nidorina<BR><input type=checkbox name=pcb id="checkbox_31"  onclick="pokemonchecked('31');">nidoqueen<BR><input type=checkbox name=pcb id="checkbox_32"  onclick="pokemonchecked('32');">nidoran♂<BR><input type=checkbox name=pcb id="checkbox_33"  onclick="pokemonchecked('33');">nidorino<BR><input type=checkbox name=pcb id="checkbox_34"  onclick="pokemonchecked('34');">nidoking<BR><input type=checkbox name=pcb id="checkbox_35"  onclick="pokemonchecked('35');">clefairy<BR><input type=checkbox name=pcb id="checkbox_36"  onclick="pokemonchecked('36');">clefable<BR><input type=checkbox name=pcb id="checkbox_37"  onclick="pokemonchecked('37');">vulpix<BR><input type=checkbox name=pcb id="checkbox_38"  onclick="pokemonchecked('38');">ninetales<BR><input type=checkbox name=pcb id="checkbox_39"  onclick="pokemonchecked('39');">jigglypuff<BR><input type=checkbox name=pcb id="checkbox_40"  onclick="pokemonchecked('40');">wigglytuff<BR><input type=checkbox name=pcb id="checkbox_41"  onclick="pokemonchecked('41');">zubat<BR><input type=checkbox name=pcb id="checkbox_42"  onclick="pokemonchecked('42');">golbat<BR><input type=checkbox name=pcb id="checkbox_43"  onclick="pokemonchecked('43');">oddish<BR><input type=checkbox name=pcb id="checkbox_44"  onclick="pokemonchecked('44');">gloom<BR><input type=checkbox name=pcb id="checkbox_45"  onclick="pokemonchecked('45');">vileplume<BR><input type=checkbox name=pcb id="checkbox_46"  onclick="pokemonchecked('46');">paras<BR><input type=checkbox name=pcb id="checkbox_47"  onclick="pokemonchecked('47');">parasect<BR><input type=checkbox name=pcb id="checkbox_48"  onclick="pokemonchecked('48');">venonat<BR><input type=checkbox name=pcb id="checkbox_49"  onclick="pokemonchecked('49');">venomoth<BR><input type=checkbox name=pcb id="checkbox_50"  onclick="pokemonchecked('50');">diglett<BR><input type=checkbox name=pcb id="checkbox_51"  onclick="pokemonchecked('51');">dugtrio<BR><input type=checkbox name=pcb id="checkbox_52"  onclick="pokemonchecked('52');">meowth<BR><input type=checkbox name=pcb id="checkbox_53"  onclick="pokemonchecked('53');">persian<BR><input type=checkbox name=pcb id="checkbox_54"  onclick="pokemonchecked('54');">psyduck<BR><input type=checkbox name=pcb id="checkbox_55"  onclick="pokemonchecked('55');">golduck<BR><input type=checkbox name=pcb id="checkbox_56"  onclick="pokemonchecked('56');">mankey<BR><input type=checkbox name=pcb id="checkbox_57"  onclick="pokemonchecked('57');">primeape<BR><input type=checkbox name=pcb id="checkbox_58"  onclick="pokemonchecked('58');">growlithe<BR><input type=checkbox name=pcb id="checkbox_59"  onclick="pokemonchecked('59');">arcanine<BR><input type=checkbox name=pcb id="checkbox_60"  onclick="pokemonchecked('60');">poliwag<BR><input type=checkbox name=pcb id="checkbox_61"  onclick="pokemonchecked('61');">poliwhirl<BR><input type=checkbox name=pcb id="checkbox_62"  onclick="pokemonchecked('62');">poliwrath<BR><input type=checkbox name=pcb id="checkbox_63"  onclick="pokemonchecked('63');">abra<BR><input type=checkbox name=pcb id="checkbox_64"  onclick="pokemonchecked('64');">kadabra<BR><input type=checkbox name=pcb id="checkbox_65"  onclick="pokemonchecked('65');">alakazam<BR><input type=checkbox name=pcb id="checkbox_66"  onclick="pokemonchecked('66');">machop<BR><input type=checkbox name=pcb id="checkbox_67"  onclick="pokemonchecked('67');">machoke<BR><input type=checkbox name=pcb id="checkbox_68"  onclick="pokemonchecked('68');">machamp<BR><input type=checkbox name=pcb id="checkbox_69"  onclick="pokemonchecked('69');">bellsprout<BR><input type=checkbox name=pcb id="checkbox_70"  onclick="pokemonchecked('70');">weepinbell<BR><input type=checkbox name=pcb id="checkbox_71"  onclick="pokemonchecked('71');">victreebel<BR><input type=checkbox name=pcb id="checkbox_72"  onclick="pokemonchecked('72');">tentacool<BR><input type=checkbox name=pcb id="checkbox_73"  onclick="pokemonchecked('73');">tentacruel<BR><input type=checkbox name=pcb id="checkbox_74"  onclick="pokemonchecked('74');">geodude<BR><input type=checkbox name=pcb id="checkbox_75"  onclick="pokemonchecked('75');">graveler<BR><input type=checkbox name=pcb id="checkbox_76"  onclick="pokemonchecked('76');">golem<BR><input type=checkbox name=pcb id="checkbox_77"  onclick="pokemonchecked('77');">ponyta<BR><input type=checkbox name=pcb id="checkbox_78"  onclick="pokemonchecked('78');">rapidash<BR><input type=checkbox name=pcb id="checkbox_79"  onclick="pokemonchecked('79');">slowpoke<BR><input type=checkbox name=pcb id="checkbox_80"  onclick="pokemonchecked('80');">slowbro<BR><input type=checkbox name=pcb id="checkbox_81"  onclick="pokemonchecked('81');">magnemite<BR><input type=checkbox name=pcb id="checkbox_82"  onclick="pokemonchecked('82');">magneton<BR><input type=checkbox name=pcb id="checkbox_83"  onclick="pokemonchecked('83');">farfetchd<BR><input type=checkbox name=pcb id="checkbox_84"  onclick="pokemonchecked('84');">doduo<BR><input type=checkbox name=pcb id="checkbox_85"  onclick="pokemonchecked('85');">dodrio<BR><input type=checkbox name=pcb id="checkbox_86"  onclick="pokemonchecked('86');">seel<BR><input type=checkbox name=pcb id="checkbox_87"  onclick="pokemonchecked('87');">dewgong<BR><input type=checkbox name=pcb id="checkbox_88"  onclick="pokemonchecked('88');">grimer<BR><input type=checkbox name=pcb id="checkbox_89"  onclick="pokemonchecked('89');">muk<BR><input type=checkbox name=pcb id="checkbox_90"  onclick="pokemonchecked('90');">shellder<BR><input type=checkbox name=pcb id="checkbox_91"  onclick="pokemonchecked('91');">cloyster<BR><input type=checkbox name=pcb id="checkbox_92"  onclick="pokemonchecked('92');">gastly<BR><input type=checkbox name=pcb id="checkbox_93"  onclick="pokemonchecked('93');">haunter<BR><input type=checkbox name=pcb id="checkbox_94"  onclick="pokemonchecked('94');">gengar<BR><input type=checkbox name=pcb id="checkbox_95"  onclick="pokemonchecked('95');">onix<BR><input type=checkbox name=pcb id="checkbox_96"  onclick="pokemonchecked('96');">drowzee<BR><input type=checkbox name=pcb id="checkbox_97"  onclick="pokemonchecked('97');">hypno<BR><input type=checkbox name=pcb id="checkbox_98"  onclick="pokemonchecked('98');">krabby<BR><input type=checkbox name=pcb id="checkbox_99"  onclick="pokemonchecked('99');">kingler<BR><input type=checkbox name=pcb id="checkbox_100"  onclick="pokemonchecked('100');">voltorb<BR><input type=checkbox name=pcb id="checkbox_101"  onclick="pokemonchecked('101');">electrode<BR><input type=checkbox name=pcb id="checkbox_102"  onclick="pokemonchecked('102');">exeggcute<BR><input type=checkbox name=pcb id="checkbox_103"  onclick="pokemonchecked('103');">exeggutor<BR><input type=checkbox name=pcb id="checkbox_104"  onclick="pokemonchecked('104');">cubone<BR><input type=checkbox name=pcb id="checkbox_105"  onclick="pokemonchecked('105');">marowak<BR><input type=checkbox name=pcb id="checkbox_106"  onclick="pokemonchecked('106');">hitmonlee<BR><input type=checkbox name=pcb id="checkbox_107"  onclick="pokemonchecked('107');">hitmonchan<BR><input type=checkbox name=pcb id="checkbox_108"  onclick="pokemonchecked('108');">lickitung<BR><input type=checkbox name=pcb id="checkbox_109"  onclick="pokemonchecked('109');">koffing<BR><input type=checkbox name=pcb id="checkbox_110"  onclick="pokemonchecked('110');">weezing<BR><input type=checkbox name=pcb id="checkbox_111"  onclick="pokemonchecked('111');">rhyhorn<BR><input type=checkbox name=pcb id="checkbox_112"  onclick="pokemonchecked('112');">rhydon<BR><input type=checkbox name=pcb id="checkbox_113"  onclick="pokemonchecked('113');">chansey<BR><input type=checkbox name=pcb id="checkbox_114"  onclick="pokemonchecked('114');">tangela<BR><input type=checkbox name=pcb id="checkbox_115"  onclick="pokemonchecked('115');">kangaskhan<BR><input type=checkbox name=pcb id="checkbox_116"  onclick="pokemonchecked('116');">horsea<BR><input type=checkbox name=pcb id="checkbox_117"  onclick="pokemonchecked('117');">seadra<BR><input type=checkbox name=pcb id="checkbox_118"  onclick="pokemonchecked('118');">goldeen<BR><input type=checkbox name=pcb id="checkbox_119"  onclick="pokemonchecked('119');">seaking<BR><input type=checkbox name=pcb id="checkbox_120"  onclick="pokemonchecked('120');">staryu<BR><input type=checkbox name=pcb id="checkbox_121"  onclick="pokemonchecked('121');">starmie<BR><input type=checkbox name=pcb id="checkbox_122"  onclick="pokemonchecked('122');">mr. mime<BR><input type=checkbox name=pcb id="checkbox_123"  onclick="pokemonchecked('123');">scyther<BR><input type=checkbox name=pcb id="checkbox_124"  onclick="pokemonchecked('124');">jynx<BR><input type=checkbox name=pcb id="checkbox_125"  onclick="pokemonchecked('125');">electabuzz<BR><input type=checkbox name=pcb id="checkbox_126"  onclick="pokemonchecked('126');">magmar<BR><input type=checkbox name=pcb id="checkbox_127"  onclick="pokemonchecked('127');">pinsir<BR><input type=checkbox name=pcb id="checkbox_128"  onclick="pokemonchecked('128');">tauros<BR><input type=checkbox name=pcb id="checkbox_129"  onclick="pokemonchecked('129');">magikarp<BR><input type=checkbox name=pcb id="checkbox_130"  onclick="pokemonchecked('130');">gyarados<BR><input type=checkbox name=pcb id="checkbox_131"  onclick="pokemonchecked('131');">lapras<BR><input type=checkbox name=pcb id="checkbox_132"  onclick="pokemonchecked('132');">ditto<BR><input type=checkbox name=pcb id="checkbox_133"  onclick="pokemonchecked('133');">eevee<BR><input type=checkbox name=pcb id="checkbox_134"  onclick="pokemonchecked('134');">vaporeon<BR><input type=checkbox name=pcb id="checkbox_135"  onclick="pokemonchecked('135');">jolteon<BR><input type=checkbox name=pcb id="checkbox_136"  onclick="pokemonchecked('136');">flareon<BR><input type=checkbox name=pcb id="checkbox_137"  onclick="pokemonchecked('137');">porygon<BR><input type=checkbox name=pcb id="checkbox_138"  onclick="pokemonchecked('138');">omanyte<BR><input type=checkbox name=pcb id="checkbox_139"  onclick="pokemonchecked('139');">omastar<BR><input type=checkbox name=pcb id="checkbox_140"  onclick="pokemonchecked('140');">kabuto<BR><input type=checkbox name=pcb id="checkbox_141"  onclick="pokemonchecked('141');">kabutops<BR><input type=checkbox name=pcb id="checkbox_142"  onclick="pokemonchecked('142');">aerodactyl<BR><input type=checkbox name=pcb id="checkbox_143"  onclick="pokemonchecked('143');">snorlax<BR><input type=checkbox name=pcb id="checkbox_144"  onclick="pokemonchecked('144');">articuno<BR><input type=checkbox name=pcb id="checkbox_145"  onclick="pokemonchecked('145');">zapdos<BR><input type=checkbox name=pcb id="checkbox_146"  onclick="pokemonchecked('146');">moltres<BR><input type=checkbox name=pcb id="checkbox_147"  onclick="pokemonchecked('147');">dratini<BR><input type=checkbox name=pcb id="checkbox_148"  onclick="pokemonchecked('148');">dragonair<BR><input type=checkbox name=pcb id="checkbox_149"  onclick="pokemonchecked('149');">dragonite<BR><input type=checkbox name=pcb id="checkbox_150"  onclick="pokemonchecked('150');">mewtwo<BR><input type=checkbox name=pcb id="checkbox_151"  onclick="pokemonchecked('151');">mew<BR>
+					</li>
+					
+					<li class="tab-content tab-content-2 typography">
+                    <input type=checkbox name=pcb id="checkbox_152"  onclick="pokemonchecked('152');">chikorita<BR><input type=checkbox name=pcb id="checkbox_153"  onclick="pokemonchecked('153');">bayleef<BR><input type=checkbox name=pcb id="checkbox_154"  onclick="pokemonchecked('154');">meganium<BR><input type=checkbox name=pcb id="checkbox_155"  onclick="pokemonchecked('155');">cyndaquil<BR><input type=checkbox name=pcb id="checkbox_156"  onclick="pokemonchecked('156');">quilava<BR><input type=checkbox name=pcb id="checkbox_157"  onclick="pokemonchecked('157');">typhlosion<BR><input type=checkbox name=pcb id="checkbox_158"  onclick="pokemonchecked('158');">totodile<BR><input type=checkbox name=pcb id="checkbox_159"  onclick="pokemonchecked('159');">croconaw<BR><input type=checkbox name=pcb id="checkbox_160"  onclick="pokemonchecked('160');">feraligatr<BR><input type=checkbox name=pcb id="checkbox_161"  onclick="pokemonchecked('161');">sentret<BR><input type=checkbox name=pcb id="checkbox_162"  onclick="pokemonchecked('162');">furret<BR><input type=checkbox name=pcb id="checkbox_163"  onclick="pokemonchecked('163');">hoothoot<BR><input type=checkbox name=pcb id="checkbox_164"  onclick="pokemonchecked('164');">noctowl<BR><input type=checkbox name=pcb id="checkbox_165"  onclick="pokemonchecked('165');">ledyba<BR><input type=checkbox name=pcb id="checkbox_166"  onclick="pokemonchecked('166');">ledian<BR><input type=checkbox name=pcb id="checkbox_167"  onclick="pokemonchecked('167');">spinarak<BR><input type=checkbox name=pcb id="checkbox_168"  onclick="pokemonchecked('168');">ariados<BR><input type=checkbox name=pcb id="checkbox_169"  onclick="pokemonchecked('169');">crobat<BR><input type=checkbox name=pcb id="checkbox_170"  onclick="pokemonchecked('170');">chinchou<BR><input type=checkbox name=pcb id="checkbox_171"  onclick="pokemonchecked('171');">lanturn<BR><input type=checkbox name=pcb id="checkbox_172"  onclick="pokemonchecked('172');">pichu<BR><input type=checkbox name=pcb id="checkbox_173"  onclick="pokemonchecked('173');">cleffa<BR><input type=checkbox name=pcb id="checkbox_174"  onclick="pokemonchecked('174');">igglybuff<BR><input type=checkbox name=pcb id="checkbox_175"  onclick="pokemonchecked('175');">togepi<BR><input type=checkbox name=pcb id="checkbox_176"  onclick="pokemonchecked('176');">togetic<BR><input type=checkbox name=pcb id="checkbox_177"  onclick="pokemonchecked('177');">natu<BR><input type=checkbox name=pcb id="checkbox_178"  onclick="pokemonchecked('178');">xatu<BR><input type=checkbox name=pcb id="checkbox_179"  onclick="pokemonchecked('179');">mareep<BR><input type=checkbox name=pcb id="checkbox_180"  onclick="pokemonchecked('180');">flaaffy<BR><input type=checkbox name=pcb id="checkbox_181"  onclick="pokemonchecked('181');">ampharos<BR><input type=checkbox name=pcb id="checkbox_182"  onclick="pokemonchecked('182');">bellossom<BR><input type=checkbox name=pcb id="checkbox_183"  onclick="pokemonchecked('183');">marill<BR><input type=checkbox name=pcb id="checkbox_184"  onclick="pokemonchecked('184');">azumarill<BR><input type=checkbox name=pcb id="checkbox_185"  onclick="pokemonchecked('185');">sudowoodo<BR><input type=checkbox name=pcb id="checkbox_186"  onclick="pokemonchecked('186');">politoed<BR><input type=checkbox name=pcb id="checkbox_187"  onclick="pokemonchecked('187');">hoppip<BR><input type=checkbox name=pcb id="checkbox_188"  onclick="pokemonchecked('188');">skiploom<BR><input type=checkbox name=pcb id="checkbox_189"  onclick="pokemonchecked('189');">jumpluff<BR><input type=checkbox name=pcb id="checkbox_190"  onclick="pokemonchecked('190');">aipom<BR><input type=checkbox name=pcb id="checkbox_191"  onclick="pokemonchecked('191');">sunkern<BR><input type=checkbox name=pcb id="checkbox_192"  onclick="pokemonchecked('192');">sunflora<BR><input type=checkbox name=pcb id="checkbox_193"  onclick="pokemonchecked('193');">yanma<BR><input type=checkbox name=pcb id="checkbox_194"  onclick="pokemonchecked('194');">wooper<BR><input type=checkbox name=pcb id="checkbox_195"  onclick="pokemonchecked('195');">quagsire<BR><input type=checkbox name=pcb id="checkbox_196"  onclick="pokemonchecked('196');">espeon<BR><input type=checkbox name=pcb id="checkbox_197"  onclick="pokemonchecked('197');">umbreon<BR><input type=checkbox name=pcb id="checkbox_198"  onclick="pokemonchecked('198');">murkrow<BR><input type=checkbox name=pcb id="checkbox_199"  onclick="pokemonchecked('199');">slowking<BR><input type=checkbox name=pcb id="checkbox_200"  onclick="pokemonchecked('200');">misdreavus<BR><input type=checkbox name=pcb id="checkbox_201"  onclick="pokemonchecked('201');">unown<BR><input type=checkbox name=pcb id="checkbox_202"  onclick="pokemonchecked('202');">wobbuffet<BR><input type=checkbox name=pcb id="checkbox_203"  onclick="pokemonchecked('203');">girafarig<BR><input type=checkbox name=pcb id="checkbox_204"  onclick="pokemonchecked('204');">pineco<BR><input type=checkbox name=pcb id="checkbox_205"  onclick="pokemonchecked('205');">forretress<BR><input type=checkbox name=pcb id="checkbox_206"  onclick="pokemonchecked('206');">dunsparce<BR><input type=checkbox name=pcb id="checkbox_207"  onclick="pokemonchecked('207');">gligar<BR><input type=checkbox name=pcb id="checkbox_208"  onclick="pokemonchecked('208');">steelix<BR><input type=checkbox name=pcb id="checkbox_209"  onclick="pokemonchecked('209');">snubbull<BR><input type=checkbox name=pcb id="checkbox_210"  onclick="pokemonchecked('210');">granbull<BR><input type=checkbox name=pcb id="checkbox_211"  onclick="pokemonchecked('211');">qwilfish<BR><input type=checkbox name=pcb id="checkbox_212"  onclick="pokemonchecked('212');">scizor<BR><input type=checkbox name=pcb id="checkbox_213"  onclick="pokemonchecked('213');">shuckle<BR><input type=checkbox name=pcb id="checkbox_214"  onclick="pokemonchecked('214');">heracross<BR><input type=checkbox name=pcb id="checkbox_215"  onclick="pokemonchecked('215');">sneasel<BR><input type=checkbox name=pcb id="checkbox_216"  onclick="pokemonchecked('216');">teddiursa<BR><input type=checkbox name=pcb id="checkbox_217"  onclick="pokemonchecked('217');">ursaring<BR><input type=checkbox name=pcb id="checkbox_218"  onclick="pokemonchecked('218');">slugma<BR><input type=checkbox name=pcb id="checkbox_219"  onclick="pokemonchecked('219');">magcargo<BR><input type=checkbox name=pcb id="checkbox_220"  onclick="pokemonchecked('220');">swinub<BR><input type=checkbox name=pcb id="checkbox_221"  onclick="pokemonchecked('221');">piloswine<BR><input type=checkbox name=pcb id="checkbox_222"  onclick="pokemonchecked('222');">corsola<BR><input type=checkbox name=pcb id="checkbox_223"  onclick="pokemonchecked('223');">remoraid<BR><input type=checkbox name=pcb id="checkbox_224"  onclick="pokemonchecked('224');">octillery<BR><input type=checkbox name=pcb id="checkbox_225"  onclick="pokemonchecked('225');">delibird<BR><input type=checkbox name=pcb id="checkbox_226"  onclick="pokemonchecked('226');">mantine<BR><input type=checkbox name=pcb id="checkbox_227"  onclick="pokemonchecked('227');">skarmory<BR><input type=checkbox name=pcb id="checkbox_228"  onclick="pokemonchecked('228');">houndour<BR><input type=checkbox name=pcb id="checkbox_229"  onclick="pokemonchecked('229');">houndoom<BR><input type=checkbox name=pcb id="checkbox_230"  onclick="pokemonchecked('230');">kingdra<BR><input type=checkbox name=pcb id="checkbox_231"  onclick="pokemonchecked('231');">phanpy<BR><input type=checkbox name=pcb id="checkbox_232"  onclick="pokemonchecked('232');">donphan<BR><input type=checkbox name=pcb id="checkbox_233"  onclick="pokemonchecked('233');">porygon2<BR><input type=checkbox name=pcb id="checkbox_234"  onclick="pokemonchecked('234');">stantler<BR><input type=checkbox name=pcb id="checkbox_235"  onclick="pokemonchecked('235');">smeargle<BR><input type=checkbox name=pcb id="checkbox_236"  onclick="pokemonchecked('236');">tyrogue<BR><input type=checkbox name=pcb id="checkbox_237"  onclick="pokemonchecked('237');">hitmontop<BR><input type=checkbox name=pcb id="checkbox_238"  onclick="pokemonchecked('238');">smoochum<BR><input type=checkbox name=pcb id="checkbox_239"  onclick="pokemonchecked('239');">elekid<BR><input type=checkbox name=pcb id="checkbox_240"  onclick="pokemonchecked('240');">magby<BR><input type=checkbox name=pcb id="checkbox_241"  onclick="pokemonchecked('241');">miltank<BR><input type=checkbox name=pcb id="checkbox_242"  onclick="pokemonchecked('242');">blissey<BR><input type=checkbox name=pcb id="checkbox_243"  onclick="pokemonchecked('243');">raikou<BR><input type=checkbox name=pcb id="checkbox_244"  onclick="pokemonchecked('244');">entei<BR><input type=checkbox name=pcb id="checkbox_245"  onclick="pokemonchecked('245');">suicune<BR><input type=checkbox name=pcb id="checkbox_246"  onclick="pokemonchecked('246');">larvitar<BR><input type=checkbox name=pcb id="checkbox_247"  onclick="pokemonchecked('247');">pupitar<BR><input type=checkbox name=pcb id="checkbox_248"  onclick="pokemonchecked('248');">tyranitar<BR><input type=checkbox name=pcb id="checkbox_249"  onclick="pokemonchecked('249');">lugia<BR><input type=checkbox name=pcb id="checkbox_250"  onclick="pokemonchecked('250');">ho-oh<BR><input type=checkbox name=pcb id="checkbox_251"  onclick="pokemonchecked('251');">celebi<BR>
+					</li>
+					
+					<li class="tab-content tab-content-3 typography">
+                    <input type=checkbox name=pcb id="checkbox_252"  onclick="pokemonchecked('252');">treecko<BR><input type=checkbox name=pcb id="checkbox_253"  onclick="pokemonchecked('253');">grovyle<BR><input type=checkbox name=pcb id="checkbox_254"  onclick="pokemonchecked('254');">sceptile<BR><input type=checkbox name=pcb id="checkbox_255"  onclick="pokemonchecked('255');">torchic<BR><input type=checkbox name=pcb id="checkbox_256"  onclick="pokemonchecked('256');">combusken<BR><input type=checkbox name=pcb id="checkbox_257"  onclick="pokemonchecked('257');">blaziken<BR><input type=checkbox name=pcb id="checkbox_258"  onclick="pokemonchecked('258');">mudkip<BR><input type=checkbox name=pcb id="checkbox_259"  onclick="pokemonchecked('259');">marshtomp<BR><input type=checkbox name=pcb id="checkbox_260"  onclick="pokemonchecked('260');">swampert<BR><input type=checkbox name=pcb id="checkbox_261"  onclick="pokemonchecked('261');">poochyena<BR><input type=checkbox name=pcb id="checkbox_262"  onclick="pokemonchecked('262');">mightyena<BR><input type=checkbox name=pcb id="checkbox_263"  onclick="pokemonchecked('263');">zigzagoon<BR><input type=checkbox name=pcb id="checkbox_264"  onclick="pokemonchecked('264');">linoone<BR><input type=checkbox name=pcb id="checkbox_265"  onclick="pokemonchecked('265');">wurmple<BR><input type=checkbox name=pcb id="checkbox_266"  onclick="pokemonchecked('266');">silcoon<BR><input type=checkbox name=pcb id="checkbox_267"  onclick="pokemonchecked('267');">beautifly<BR><input type=checkbox name=pcb id="checkbox_268"  onclick="pokemonchecked('268');">cascoon<BR><input type=checkbox name=pcb id="checkbox_269"  onclick="pokemonchecked('269');">dustox<BR><input type=checkbox name=pcb id="checkbox_270"  onclick="pokemonchecked('270');">lotad<BR><input type=checkbox name=pcb id="checkbox_271"  onclick="pokemonchecked('271');">lombre<BR><input type=checkbox name=pcb id="checkbox_272"  onclick="pokemonchecked('272');">ludicolo<BR><input type=checkbox name=pcb id="checkbox_273"  onclick="pokemonchecked('273');">seedot<BR><input type=checkbox name=pcb id="checkbox_274"  onclick="pokemonchecked('274');">nuzleaf<BR><input type=checkbox name=pcb id="checkbox_275"  onclick="pokemonchecked('275');">shiftry<BR><input type=checkbox name=pcb id="checkbox_276"  onclick="pokemonchecked('276');">taillow<BR><input type=checkbox name=pcb id="checkbox_277"  onclick="pokemonchecked('277');">swellow<BR><input type=checkbox name=pcb id="checkbox_278"  onclick="pokemonchecked('278');">wingull<BR><input type=checkbox name=pcb id="checkbox_279"  onclick="pokemonchecked('279');">pelipper<BR><input type=checkbox name=pcb id="checkbox_280"  onclick="pokemonchecked('280');">ralts<BR><input type=checkbox name=pcb id="checkbox_281"  onclick="pokemonchecked('281');">kirlia<BR><input type=checkbox name=pcb id="checkbox_282"  onclick="pokemonchecked('282');">gardevoir<BR><input type=checkbox name=pcb id="checkbox_283"  onclick="pokemonchecked('283');">surskit<BR><input type=checkbox name=pcb id="checkbox_284"  onclick="pokemonchecked('284');">masquerain<BR><input type=checkbox name=pcb id="checkbox_285"  onclick="pokemonchecked('285');">shroomish<BR><input type=checkbox name=pcb id="checkbox_286"  onclick="pokemonchecked('286');">breloom<BR><input type=checkbox name=pcb id="checkbox_287"  onclick="pokemonchecked('287');">slakoth<BR><input type=checkbox name=pcb id="checkbox_288"  onclick="pokemonchecked('288');">vigoroth<BR><input type=checkbox name=pcb id="checkbox_289"  onclick="pokemonchecked('289');">slaking<BR><input type=checkbox name=pcb id="checkbox_290"  onclick="pokemonchecked('290');">nincada<BR><input type=checkbox name=pcb id="checkbox_291"  onclick="pokemonchecked('291');">ninjask<BR><input type=checkbox name=pcb id="checkbox_292"  onclick="pokemonchecked('292');">shedinja<BR><input type=checkbox name=pcb id="checkbox_293"  onclick="pokemonchecked('293');">whismur<BR><input type=checkbox name=pcb id="checkbox_294"  onclick="pokemonchecked('294');">loudred<BR><input type=checkbox name=pcb id="checkbox_295"  onclick="pokemonchecked('295');">exploud<BR><input type=checkbox name=pcb id="checkbox_296"  onclick="pokemonchecked('296');">makuhita<BR><input type=checkbox name=pcb id="checkbox_297"  onclick="pokemonchecked('297');">hariyama<BR><input type=checkbox name=pcb id="checkbox_298"  onclick="pokemonchecked('298');">azurill<BR><input type=checkbox name=pcb id="checkbox_299"  onclick="pokemonchecked('299');">nosepass<BR><input type=checkbox name=pcb id="checkbox_300"  onclick="pokemonchecked('300');">skitty<BR><input type=checkbox name=pcb id="checkbox_301"  onclick="pokemonchecked('301');">delcatty<BR><input type=checkbox name=pcb id="checkbox_302"  onclick="pokemonchecked('302');">sableye<BR><input type=checkbox name=pcb id="checkbox_303"  onclick="pokemonchecked('303');">mawile<BR><input type=checkbox name=pcb id="checkbox_304"  onclick="pokemonchecked('304');">aron<BR><input type=checkbox name=pcb id="checkbox_305"  onclick="pokemonchecked('305');">lairon<BR><input type=checkbox name=pcb id="checkbox_306"  onclick="pokemonchecked('306');">aggron<BR><input type=checkbox name=pcb id="checkbox_307"  onclick="pokemonchecked('307');">meditite<BR><input type=checkbox name=pcb id="checkbox_308"  onclick="pokemonchecked('308');">medicham<BR><input type=checkbox name=pcb id="checkbox_309"  onclick="pokemonchecked('309');">electrike<BR><input type=checkbox name=pcb id="checkbox_310"  onclick="pokemonchecked('310');">manectric<BR><input type=checkbox name=pcb id="checkbox_311"  onclick="pokemonchecked('311');">plusle<BR><input type=checkbox name=pcb id="checkbox_312"  onclick="pokemonchecked('312');">minun<BR><input type=checkbox name=pcb id="checkbox_313"  onclick="pokemonchecked('313');">volbeat<BR><input type=checkbox name=pcb id="checkbox_314"  onclick="pokemonchecked('314');">illumise<BR><input type=checkbox name=pcb id="checkbox_315"  onclick="pokemonchecked('315');">roselia<BR><input type=checkbox name=pcb id="checkbox_316"  onclick="pokemonchecked('316');">gulpin<BR><input type=checkbox name=pcb id="checkbox_317"  onclick="pokemonchecked('317');">swalot<BR><input type=checkbox name=pcb id="checkbox_318"  onclick="pokemonchecked('318');">carvanha<BR><input type=checkbox name=pcb id="checkbox_319"  onclick="pokemonchecked('319');">sharpedo<BR><input type=checkbox name=pcb id="checkbox_320"  onclick="pokemonchecked('320');">wailmer<BR><input type=checkbox name=pcb id="checkbox_321"  onclick="pokemonchecked('321');">wailord<BR><input type=checkbox name=pcb id="checkbox_322"  onclick="pokemonchecked('322');">numel<BR><input type=checkbox name=pcb id="checkbox_323"  onclick="pokemonchecked('323');">camerupt<BR><input type=checkbox name=pcb id="checkbox_324"  onclick="pokemonchecked('324');">torkoal<BR><input type=checkbox name=pcb id="checkbox_325"  onclick="pokemonchecked('325');">spoink<BR><input type=checkbox name=pcb id="checkbox_326"  onclick="pokemonchecked('326');">grumpig<BR><input type=checkbox name=pcb id="checkbox_327"  onclick="pokemonchecked('327');">spinda<BR><input type=checkbox name=pcb id="checkbox_328"  onclick="pokemonchecked('328');">trapinch<BR><input type=checkbox name=pcb id="checkbox_329"  onclick="pokemonchecked('329');">vibrava<BR><input type=checkbox name=pcb id="checkbox_330"  onclick="pokemonchecked('330');">flygon<BR><input type=checkbox name=pcb id="checkbox_331"  onclick="pokemonchecked('331');">cacnea<BR><input type=checkbox name=pcb id="checkbox_332"  onclick="pokemonchecked('332');">cacturne<BR><input type=checkbox name=pcb id="checkbox_333"  onclick="pokemonchecked('333');">swablu<BR><input type=checkbox name=pcb id="checkbox_334"  onclick="pokemonchecked('334');">altaria<BR><input type=checkbox name=pcb id="checkbox_335"  onclick="pokemonchecked('335');">zangoose<BR><input type=checkbox name=pcb id="checkbox_336"  onclick="pokemonchecked('336');">seviper<BR><input type=checkbox name=pcb id="checkbox_337"  onclick="pokemonchecked('337');">lunatone<BR><input type=checkbox name=pcb id="checkbox_338"  onclick="pokemonchecked('338');">solrock<BR><input type=checkbox name=pcb id="checkbox_339"  onclick="pokemonchecked('339');">barboach<BR><input type=checkbox name=pcb id="checkbox_340"  onclick="pokemonchecked('340');">whiscash<BR><input type=checkbox name=pcb id="checkbox_341"  onclick="pokemonchecked('341');">corphish<BR><input type=checkbox name=pcb id="checkbox_342"  onclick="pokemonchecked('342');">crawdaunt<BR><input type=checkbox name=pcb id="checkbox_343"  onclick="pokemonchecked('343');">baltoy<BR><input type=checkbox name=pcb id="checkbox_344"  onclick="pokemonchecked('344');">claydol<BR><input type=checkbox name=pcb id="checkbox_345"  onclick="pokemonchecked('345');">lileep<BR><input type=checkbox name=pcb id="checkbox_346"  onclick="pokemonchecked('346');">cradily<BR><input type=checkbox name=pcb id="checkbox_347"  onclick="pokemonchecked('347');">anorith<BR><input type=checkbox name=pcb id="checkbox_348"  onclick="pokemonchecked('348');">armaldo<BR><input type=checkbox name=pcb id="checkbox_349"  onclick="pokemonchecked('349');">feebas<BR><input type=checkbox name=pcb id="checkbox_350"  onclick="pokemonchecked('350');">milotic<BR><input type=checkbox name=pcb id="checkbox_351"  onclick="pokemonchecked('351');">castform<BR><input type=checkbox name=pcb id="checkbox_352"  onclick="pokemonchecked('352');">kecleon<BR><input type=checkbox name=pcb id="checkbox_353"  onclick="pokemonchecked('353');">shuppet<BR><input type=checkbox name=pcb id="checkbox_354"  onclick="pokemonchecked('354');">banette<BR><input type=checkbox name=pcb id="checkbox_355"  onclick="pokemonchecked('355');">duskull<BR><input type=checkbox name=pcb id="checkbox_356"  onclick="pokemonchecked('356');">dusclops<BR><input type=checkbox name=pcb id="checkbox_357"  onclick="pokemonchecked('357');">tropius<BR><input type=checkbox name=pcb id="checkbox_358"  onclick="pokemonchecked('358');">chimecho<BR><input type=checkbox name=pcb id="checkbox_359"  onclick="pokemonchecked('359');">absol<BR><input type=checkbox name=pcb id="checkbox_360"  onclick="pokemonchecked('360');">wynaut<BR><input type=checkbox name=pcb id="checkbox_361"  onclick="pokemonchecked('361');">snorunt<BR><input type=checkbox name=pcb id="checkbox_362"  onclick="pokemonchecked('362');">glalie<BR><input type=checkbox name=pcb id="checkbox_363"  onclick="pokemonchecked('363');">spheal<BR><input type=checkbox name=pcb id="checkbox_364"  onclick="pokemonchecked('364');">sealeo<BR><input type=checkbox name=pcb id="checkbox_365"  onclick="pokemonchecked('365');">walrein<BR><input type=checkbox name=pcb id="checkbox_366"  onclick="pokemonchecked('366');">clamperl<BR><input type=checkbox name=pcb id="checkbox_367"  onclick="pokemonchecked('367');">huntail<BR><input type=checkbox name=pcb id="checkbox_368"  onclick="pokemonchecked('368');">gorebyss<BR><input type=checkbox name=pcb id="checkbox_369"  onclick="pokemonchecked('369');">relicanth<BR><input type=checkbox name=pcb id="checkbox_370"  onclick="pokemonchecked('370');">luvdisc<BR><input type=checkbox name=pcb id="checkbox_371"  onclick="pokemonchecked('371');">bagon<BR><input type=checkbox name=pcb id="checkbox_372"  onclick="pokemonchecked('372');">shelgon<BR><input type=checkbox name=pcb id="checkbox_373"  onclick="pokemonchecked('373');">salamence<BR><input type=checkbox name=pcb id="checkbox_374"  onclick="pokemonchecked('374');">beldum<BR><input type=checkbox name=pcb id="checkbox_375"  onclick="pokemonchecked('375');">metang<BR><input type=checkbox name=pcb id="checkbox_376"  onclick="pokemonchecked('376');">metagross<BR><input type=checkbox name=pcb id="checkbox_377"  onclick="pokemonchecked('377');">regirock<BR><input type=checkbox name=pcb id="checkbox_378"  onclick="pokemonchecked('378');">regice<BR><input type=checkbox name=pcb id="checkbox_379"  onclick="pokemonchecked('379');">registeel<BR><input type=checkbox name=pcb id="checkbox_380"  onclick="pokemonchecked('380');">latias<BR><input type=checkbox name=pcb id="checkbox_381"  onclick="pokemonchecked('381');">latios<BR><input type=checkbox name=pcb id="checkbox_382"  onclick="pokemonchecked('382');">kyogre<BR><input type=checkbox name=pcb id="checkbox_383"  onclick="pokemonchecked('383');">groudon<BR><input type=checkbox name=pcb id="checkbox_384"  onclick="pokemonchecked('384');">rayquaza<BR><input type=checkbox name=pcb id="checkbox_385"  onclick="pokemonchecked('385');">jirachi<BR><input type=checkbox name=pcb id="checkbox_386"  onclick="pokemonchecked('386');">deoxys<BR>
+					</li>
+					
+					<li class="tab-content tab-content-last typography">
+						<div class="typography">
+                    <input type=checkbox name=pcb id="checkbox_387"  onclick="pokemonchecked('387');">turtwig<BR><input type=checkbox name=pcb id="checkbox_388"  onclick="pokemonchecked('388');">grotle<BR><input type=checkbox name=pcb id="checkbox_389"  onclick="pokemonchecked('389');">torterra<BR><input type=checkbox name=pcb id="checkbox_390"  onclick="pokemonchecked('390');">chimchar<BR><input type=checkbox name=pcb id="checkbox_391"  onclick="pokemonchecked('391');">monferno<BR><input type=checkbox name=pcb id="checkbox_392"  onclick="pokemonchecked('392');">infernape<BR><input type=checkbox name=pcb id="checkbox_393"  onclick="pokemonchecked('393');">piplup<BR><input type=checkbox name=pcb id="checkbox_394"  onclick="pokemonchecked('394');">prinplup<BR><input type=checkbox name=pcb id="checkbox_395"  onclick="pokemonchecked('395');">empoleon<BR><input type=checkbox name=pcb id="checkbox_396"  onclick="pokemonchecked('396');">starly<BR><input type=checkbox name=pcb id="checkbox_397"  onclick="pokemonchecked('397');">staravia<BR><input type=checkbox name=pcb id="checkbox_398"  onclick="pokemonchecked('398');">staraptor<BR><input type=checkbox name=pcb id="checkbox_399"  onclick="pokemonchecked('399');">bidoof<BR><input type=checkbox name=pcb id="checkbox_400"  onclick="pokemonchecked('400');">bibarel<BR><input type=checkbox name=pcb id="checkbox_401"  onclick="pokemonchecked('401');">kricketot<BR><input type=checkbox name=pcb id="checkbox_402"  onclick="pokemonchecked('402');">kricketune<BR><input type=checkbox name=pcb id="checkbox_403"  onclick="pokemonchecked('403');">shinx<BR><input type=checkbox name=pcb id="checkbox_404"  onclick="pokemonchecked('404');">luxio<BR><input type=checkbox name=pcb id="checkbox_405"  onclick="pokemonchecked('405');">luxray<BR><input type=checkbox name=pcb id="checkbox_406"  onclick="pokemonchecked('406');">budew<BR><input type=checkbox name=pcb id="checkbox_407"  onclick="pokemonchecked('407');">roserade<BR><input type=checkbox name=pcb id="checkbox_408"  onclick="pokemonchecked('408');">cranidos<BR><input type=checkbox name=pcb id="checkbox_409"  onclick="pokemonchecked('409');">rampardos<BR><input type=checkbox name=pcb id="checkbox_410"  onclick="pokemonchecked('410');">shieldon<BR><input type=checkbox name=pcb id="checkbox_411"  onclick="pokemonchecked('411');">bastiodon<BR><input type=checkbox name=pcb id="checkbox_412"  onclick="pokemonchecked('412');">burmy<BR><input type=checkbox name=pcb id="checkbox_413"  onclick="pokemonchecked('413');">wormadam<BR><input type=checkbox name=pcb id="checkbox_414"  onclick="pokemonchecked('414');">mothim<BR><input type=checkbox name=pcb id="checkbox_415"  onclick="pokemonchecked('415');">combee<BR><input type=checkbox name=pcb id="checkbox_416"  onclick="pokemonchecked('416');">vespiquen<BR><input type=checkbox name=pcb id="checkbox_417"  onclick="pokemonchecked('417');">pachirisu<BR><input type=checkbox name=pcb id="checkbox_418"  onclick="pokemonchecked('418');">buizel<BR><input type=checkbox name=pcb id="checkbox_419"  onclick="pokemonchecked('419');">floatzel<BR><input type=checkbox name=pcb id="checkbox_420"  onclick="pokemonchecked('420');">cherubi<BR><input type=checkbox name=pcb id="checkbox_421"  onclick="pokemonchecked('421');">cherrim<BR><input type=checkbox name=pcb id="checkbox_422"  onclick="pokemonchecked('422');">shellos<BR><input type=checkbox name=pcb id="checkbox_423"  onclick="pokemonchecked('423');">gastrodon<BR><input type=checkbox name=pcb id="checkbox_424"  onclick="pokemonchecked('424');">ambipom<BR><input type=checkbox name=pcb id="checkbox_425"  onclick="pokemonchecked('425');">drifloon<BR><input type=checkbox name=pcb id="checkbox_426"  onclick="pokemonchecked('426');">drifblim<BR><input type=checkbox name=pcb id="checkbox_427"  onclick="pokemonchecked('427');">buneary<BR><input type=checkbox name=pcb id="checkbox_428"  onclick="pokemonchecked('428');">lopunny<BR><input type=checkbox name=pcb id="checkbox_429"  onclick="pokemonchecked('429');">mismagius<BR><input type=checkbox name=pcb id="checkbox_430"  onclick="pokemonchecked('430');">honchkrow<BR><input type=checkbox name=pcb id="checkbox_431"  onclick="pokemonchecked('431');">glameow<BR><input type=checkbox name=pcb id="checkbox_432"  onclick="pokemonchecked('432');">purugly<BR><input type=checkbox name=pcb id="checkbox_433"  onclick="pokemonchecked('433');">chingling<BR><input type=checkbox name=pcb id="checkbox_434"  onclick="pokemonchecked('434');">stunky<BR><input type=checkbox name=pcb id="checkbox_435"  onclick="pokemonchecked('435');">skuntank<BR><input type=checkbox name=pcb id="checkbox_436"  onclick="pokemonchecked('436');">bronzor<BR><input type=checkbox name=pcb id="checkbox_437"  onclick="pokemonchecked('437');">bronzong<BR><input type=checkbox name=pcb id="checkbox_438"  onclick="pokemonchecked('438');">bonsly<BR><input type=checkbox name=pcb id="checkbox_439"  onclick="pokemonchecked('439');">mime jr.<BR><input type=checkbox name=pcb id="checkbox_440"  onclick="pokemonchecked('440');">happiny<BR><input type=checkbox name=pcb id="checkbox_441"  onclick="pokemonchecked('441');">chatot<BR><input type=checkbox name=pcb id="checkbox_442"  onclick="pokemonchecked('442');">spiritomb<BR><input type=checkbox name=pcb id="checkbox_443"  onclick="pokemonchecked('443');">gible<BR><input type=checkbox name=pcb id="checkbox_444"  onclick="pokemonchecked('444');">gabite<BR><input type=checkbox name=pcb id="checkbox_445"  onclick="pokemonchecked('445');">garchomp<BR><input type=checkbox name=pcb id="checkbox_446"  onclick="pokemonchecked('446');">munchlax<BR><input type=checkbox name=pcb id="checkbox_447"  onclick="pokemonchecked('447');">riolu<BR><input type=checkbox name=pcb id="checkbox_448"  onclick="pokemonchecked('448');">lucario<BR><input type=checkbox name=pcb id="checkbox_449"  onclick="pokemonchecked('449');">hippopotas<BR><input type=checkbox name=pcb id="checkbox_450"  onclick="pokemonchecked('450');">hippowdon<BR><input type=checkbox name=pcb id="checkbox_451"  onclick="pokemonchecked('451');">skorupi<BR><input type=checkbox name=pcb id="checkbox_452"  onclick="pokemonchecked('452');">drapion<BR><input type=checkbox name=pcb id="checkbox_453"  onclick="pokemonchecked('453');">croagunk<BR><input type=checkbox name=pcb id="checkbox_454"  onclick="pokemonchecked('454');">toxicroak<BR><input type=checkbox name=pcb id="checkbox_455"  onclick="pokemonchecked('455');">carnivine<BR><input type=checkbox name=pcb id="checkbox_456"  onclick="pokemonchecked('456');">finneon<BR><input type=checkbox name=pcb id="checkbox_457"  onclick="pokemonchecked('457');">lumineon<BR><input type=checkbox name=pcb id="checkbox_458"  onclick="pokemonchecked('458');">mantyke<BR><input type=checkbox name=pcb id="checkbox_459"  onclick="pokemonchecked('459');">snover<BR><input type=checkbox name=pcb id="checkbox_460"  onclick="pokemonchecked('460');">abomasnow<BR><input type=checkbox name=pcb id="checkbox_461"  onclick="pokemonchecked('461');">weavile<BR><input type=checkbox name=pcb id="checkbox_462"  onclick="pokemonchecked('462');">magnezone<BR><input type=checkbox name=pcb id="checkbox_463"  onclick="pokemonchecked('463');">lickilicky<BR><input type=checkbox name=pcb id="checkbox_464"  onclick="pokemonchecked('464');">rhyperior<BR><input type=checkbox name=pcb id="checkbox_465"  onclick="pokemonchecked('465');">tangrowth<BR><input type=checkbox name=pcb id="checkbox_466"  onclick="pokemonchecked('466');">electivire<BR><input type=checkbox name=pcb id="checkbox_467"  onclick="pokemonchecked('467');">magmortar<BR><input type=checkbox name=pcb id="checkbox_468"  onclick="pokemonchecked('468');">togekiss<BR><input type=checkbox name=pcb id="checkbox_469"  onclick="pokemonchecked('469');">yanmega<BR><input type=checkbox name=pcb id="checkbox_470"  onclick="pokemonchecked('470');">leafeon<BR><input type=checkbox name=pcb id="checkbox_471"  onclick="pokemonchecked('471');">glaceon<BR><input type=checkbox name=pcb id="checkbox_472"  onclick="pokemonchecked('472');">gliscor<BR><input type=checkbox name=pcb id="checkbox_473"  onclick="pokemonchecked('473');">mamoswine<BR><input type=checkbox name=pcb id="checkbox_474"  onclick="pokemonchecked('474');">porygon-z<BR><input type=checkbox name=pcb id="checkbox_475"  onclick="pokemonchecked('475');">gallade<BR><input type=checkbox name=pcb id="checkbox_476"  onclick="pokemonchecked('476');">probopass<BR><input type=checkbox name=pcb id="checkbox_477"  onclick="pokemonchecked('477');">dusknoir<BR><input type=checkbox name=pcb id="checkbox_478"  onclick="pokemonchecked('478');">froslass<BR><input type=checkbox name=pcb id="checkbox_479"  onclick="pokemonchecked('479');">rotom<BR><input type=checkbox name=pcb id="checkbox_480"  onclick="pokemonchecked('480');">uxie<BR><input type=checkbox name=pcb id="checkbox_481"  onclick="pokemonchecked('481');">mesprit<BR><input type=checkbox name=pcb id="checkbox_482"  onclick="pokemonchecked('482');">azelf<BR><input type=checkbox name=pcb id="checkbox_483"  onclick="pokemonchecked('483');">dialga<BR><input type=checkbox name=pcb id="checkbox_484"  onclick="pokemonchecked('484');">palkia<BR><input type=checkbox name=pcb id="checkbox_485"  onclick="pokemonchecked('485');">heatran<BR><input type=checkbox name=pcb id="checkbox_486"  onclick="pokemonchecked('486');">regigigas<BR><input type=checkbox name=pcb id="checkbox_487"  onclick="pokemonchecked('487');">giratina<BR><input type=checkbox name=pcb id="checkbox_488"  onclick="pokemonchecked('488');">cresselia<BR><input type=checkbox name=pcb id="checkbox_489"  onclick="pokemonchecked('489');">phione<BR><input type=checkbox name=pcb id="checkbox_490"  onclick="pokemonchecked('490');">manaphy<BR><input type=checkbox name=pcb id="checkbox_491"  onclick="pokemonchecked('491');">darkrai<BR><input type=checkbox name=pcb id="checkbox_492"  onclick="pokemonchecked('492');">shaymin<BR><input type=checkbox name=pcb id="checkbox_493"  onclick="pokemonchecked('493');">arceus<BR>
+						</div>
+					</li>
+				</ul>
+			</div>
+	</TD>
+     <TD width=150 valign=top>
+        <ul id="sortable">
+        </ul>
+    </TD>
         <TD valign=top>
+            <input type=button onclick="clearpokemonlist();" value="Clear list">
+            <input type=button onclick="copytexttolist();" value="Copy text to list"><BR>
             <textarea id="pokelist" rows=30/></textarea>
         </TD>
      </TR>
 </TABLE>
+</TD></TR></TABLE>
 </body>
 </html>
